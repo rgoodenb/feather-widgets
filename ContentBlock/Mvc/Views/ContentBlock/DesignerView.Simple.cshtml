@@ -23,3 +23,12 @@
 </textarea>
 
 <sf-image-selector-modal id="imageSelector"></sf-image-selector-modal>
+
+<script type="text/javascript">
+
+    $('#imageSelector').on('imageSelected', function (ev, arg) {
+        var editor = $('#editor').data('kendoEditor');
+        editor.paste(arg);
+    });    
+
+</script>
