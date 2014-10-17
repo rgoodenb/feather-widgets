@@ -16,7 +16,7 @@
             'createLink',
             {
                 name: 'openImageSelector',
-                template: '<button class=\'k-button\' sf-image-selector-button=\'\\#imageSelector\'>Insert image</button>'
+                template: '<button class=\'k-button\' onclick=\'openImageSelector();\'>Insert image</button>'
             },
             'createTable'
     ]">
@@ -25,6 +25,11 @@
 <sf-image-selector-modal id="imageSelector"></sf-image-selector-modal>
 
 <script type="text/javascript">
+
+    var openImageSelector = function () {
+        var editor = $('#editor').data('kendoEditor');
+        angular.element('#imageSelector').scope().open(editor.selectedHtml());
+    };
 
     $('#imageSelector').on('imageSelected', function (ev, arg) {
         var editor = $('#editor').data('kendoEditor');
