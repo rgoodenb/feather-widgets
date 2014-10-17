@@ -4,4 +4,20 @@
     <b>@Html.Resource("ThisContentIsShared")</b> @Html.Resource("SharedContentWarning")
 </div>
 
-<textarea id="editor" style="height: 340px;" kendo-editor ng-model="properties.Content.PropertyValue"></textarea>
+<textarea id="editor"
+          style="height: 340px;"
+          kendo-editor
+          ng-model="properties.Content.PropertyValue"
+          k-tools="[
+            'formatting',
+            'bold', 'italic', 'underline',
+            'justifyLeft', 'justifyCenter', 'justifyRight',
+            'insertUnorderedList', 'insertOrderedList', 'indent',
+            'createLink',
+            {
+                name: 'openImageSelector',
+                template: '<button class=\'k-button\'>Insert image</button>'
+            },
+            'createTable'
+    ]">
+</textarea>
