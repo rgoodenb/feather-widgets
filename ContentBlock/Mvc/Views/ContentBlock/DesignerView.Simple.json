@@ -3,8 +3,9 @@
   "scripts": [
     "Mvc/Scripts/ContentBlock/shared-content-services.js",
     "Mvc/Scripts/Angular/angular-resource.min.js",
-	"Services/services.js",
+    "Services/services.js",
+    "Services/sf-libraries-service.js",
     "Selectors/selectors.js",
-	"Selectors/image-selector.js"
+	"Selectors/sf-image-selector.js"
   ]
 }
