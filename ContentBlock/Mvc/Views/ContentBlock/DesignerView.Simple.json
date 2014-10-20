@@ -3,6 +3,7 @@
   "scripts": [
     "Mvc/Scripts/ContentBlock/shared-content-services.js",
     "Mvc/Scripts/Angular/angular-resource.min.js",
+    "Components/sf-infinite-scroll.js",
     "Services/services.js",
     "Services/sf-libraries-service.js",
     "Selectors/selectors.js",
