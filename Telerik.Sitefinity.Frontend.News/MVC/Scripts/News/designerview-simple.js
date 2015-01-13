@@ -19,12 +19,11 @@
         $scope.$watch(
 	        'properties.ProviderName.PropertyValue',
 	        function (newProviderName, oldProviderName) {
-	            if (newProviderName !== oldProviderName) {
+	            if (newProviderName && oldProviderName && newProviderName !== oldProviderName) {
 	                $scope.properties.SelectionMode.PropertyValue = 'AllItems';
 	                $scope.properties.SerializedSelectedItemsIds.PropertyValue = null;
 	            }
-	        },
-	        true
+	        }
         );
 
         $scope.$watch(
