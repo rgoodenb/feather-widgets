@@ -263,9 +263,10 @@ namespace Telerik.Sitefinity.Frontend.Identity.Mvc.Models.Profile
                 }
             }
 
-            var minPassLength = UserManager.GetManager(this.MembershipProvider).MinRequiredPasswordLength;
             if (!string.IsNullOrEmpty(viewModel.OldPassword) && !string.IsNullOrEmpty(viewModel.NewPassword) && !string.IsNullOrEmpty(viewModel.RepeatPassword))
             {
+                var minPassLength = UserManager.GetManager(this.MembershipProvider).MinRequiredPasswordLength;
+
                 if (viewModel.NewPassword.Length < minPassLength)
                 {
                     modelState.AddModelError("NewPassword", string.Format(Res.Get<ProfileResources>().MinimumPasswordLength, minPassLength));
