@@ -23,7 +23,10 @@
                 </li>
             }
         </ul>
+    }
 
+    @foreach (var item in Model.Items)
+    {
         if (((ListViewModel)item).ListItemViewModel.Items.Any())
         {
             <h1 @Html.InlineEditingAttributes(Model.ProviderName, Model.ContentType.FullName, (Guid)item.Fields.Id)
