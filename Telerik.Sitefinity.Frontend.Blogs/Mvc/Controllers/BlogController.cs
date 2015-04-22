@@ -98,6 +98,14 @@ namespace Telerik.Sitefinity.Frontend.Blogs.Mvc.Controllers
             }
         }
 
+        /// <summary>
+        /// Gets or sets the id of the page where will be displayed details view for selected item.
+        /// </summary>
+        /// <value>
+        /// The details page id.
+        /// </value>
+        public Guid DetailsPageId { get; set; }
+
         #endregion
 
         #region Actions
@@ -151,6 +159,8 @@ namespace Telerik.Sitefinity.Frontend.Blogs.Mvc.Controllers
             this.ViewBag.CurrentPageUrl = SystemManager.CurrentHttpContext != null ? this.GetCurrentPageUrl() : string.Empty;
             this.ViewBag.RedirectPageUrlTemplate = this.ViewBag.CurrentPageUrl + redirectPageUrl;
             this.ViewBag.ItemsPerPage = this.Model.ItemsPerPage;
+            this.ViewBag.DetailsPageId = this.DetailsPageId;
+            this.ViewBag.OpenInSamePage = this.OpenInSamePage;
         }
 
         #endregion
