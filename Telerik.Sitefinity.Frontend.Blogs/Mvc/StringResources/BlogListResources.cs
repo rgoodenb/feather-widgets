@@ -102,6 +102,21 @@ namespace Telerik.Sitefinity.Frontend.Blogs.Mvc.StringResources
         }
 
         /// <summary>
+        /// Gets phrase : Single item settings
+        /// </summary>
+        [ResourceEntry("SingleItemSettings",
+            Value = "Single item settings",
+            Description = "phrase : Single item settings",
+            LastModified = "2015/04/22")]
+        public string SingleItemSettings
+        {
+            get
+            {
+                return this["SingleItemSettings"];
+            }
+        }
+
+        /// <summary>
         /// Gets phrase : Which blogs to display?
         /// </summary>
         [ResourceEntry("ItemsToDisplay",
@@ -138,7 +153,7 @@ namespace Telerik.Sitefinity.Frontend.Blogs.Mvc.StringResources
         [ResourceEntry("UsePaging",
             Value = "Use paging",
             Description = "Phrase: Use paging",
-            LastModified = "2015/04/21")]
+            LastModified = "2015/04/22")]
         public string UsePaging
         {
             get
@@ -153,7 +168,7 @@ namespace Telerik.Sitefinity.Frontend.Blogs.Mvc.StringResources
         [ResourceEntry("DivideToItemPerPage",
             Value = "Divide the list on pages up to {0} items per page",
             Description = "Phrase: Divide the list on pages up to {0} items per page",
-            LastModified = "2015/04/21")]
+            LastModified = "2015/04/22")]
         public string DivideToItemPerPage
         {
             get
@@ -168,7 +183,7 @@ namespace Telerik.Sitefinity.Frontend.Blogs.Mvc.StringResources
         [ResourceEntry("UseLimit",
             Value = "Use limit",
             Description = "phrase : Use limit",
-            LastModified = "2015/04/21")]
+            LastModified = "2015/04/22")]
         public string UseLimit
         {
             get
@@ -184,7 +199,7 @@ namespace Telerik.Sitefinity.Frontend.Blogs.Mvc.StringResources
         [ResourceEntry("ShowLimitedItems",
             Value = "Show only limited number of items {0} items in total",
             Description = "Phrase: Show only limited number of items {0} items in total",
-            LastModified = "2015/04/21")]
+            LastModified = "2015/04/22")]
         public string ShowLimitedItems
         {
             get
@@ -200,7 +215,7 @@ namespace Telerik.Sitefinity.Frontend.Blogs.Mvc.StringResources
         [ResourceEntry("NoLimitPaging",
             Value = "No limit and paging",
             Description = "Phrase: No limit and paging",
-            LastModified = "2015/04/21")]
+            LastModified = "2015/04/22")]
         public string NoLimitPaging
         {
             get
@@ -216,12 +231,57 @@ namespace Telerik.Sitefinity.Frontend.Blogs.Mvc.StringResources
         [ResourceEntry("ShowAllItems",
             Value = "Show all published items at once",
             Description = "Phrase: Show all published items at once",
-            LastModified = "2015/04/21")]
+            LastModified = "2015/04/22")]
         public string ShowAllItems
         {
             get
             {
                 return this["ShowAllItems"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase : Open single item in...
+        /// </summary>
+        [ResourceEntry("OpenSingleItem",
+            Value = "Open single item in...",
+            Description = "phrase : Open single item in...",
+            LastModified = "2015/04/22")]
+        public string OpenSingleItem
+        {
+            get
+            {
+                return this["OpenSingleItem"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase : Auto-generated page
+        /// </summary>
+        [ResourceEntry("ShowInSamePage",
+            Value = "Auto-generated page",
+            Description = "phrase : Auto-generated page (with the same layout as the list page)",
+            LastModified = "2015/04/22")]
+        public string ShowInSamePage
+        {
+            get
+            {
+                return this["ShowInSamePage"];
+            }
+        }
+
+        /// <summary>
+        /// Gets phrase : Selected existing page...
+        /// </summary>
+        [ResourceEntry("ShowInExistingPage",
+            Value = "Selected existing page...",
+            Description = "phrase : Selected existing page...",
+            LastModified = "2015/04/22")]
+        public string ShowInExistingPage
+        {
+            get
+            {
+                return this["ShowInExistingPage"];
             }
         }
 
