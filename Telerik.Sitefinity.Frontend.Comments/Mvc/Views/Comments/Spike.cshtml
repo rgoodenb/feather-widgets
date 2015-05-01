@@ -1,0 +1,80 @@
+﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+<h1>Some item</h1>
+<div>
+    <p>Comments</p>
+    @*If the browser has its capabilities dictionary populated and can not execute js, render the noscript tag, and try to remove it with js afterwards.*@
+    @if (Request == null || Request.Browser == null || Request.Browser.Capabilities == null || (Request.Browser.Capabilities.Contains("javascript") && Request.Browser.Capabilities["javascript"].Equals("false")))
+    {
+        <noscript data-comment-noscript>
+        @{ var random = new Random(); }
+        @for (int i = 0; i < 1000; i++)
+        {
+            <div>
+                <p>
+                    <span>Name #@i</span> | 
+                    <span>@DateTime.Now.AddDays(random.Next(-5, 5))</span> | 
+                    + <span>@random.Next(0, 20)</span> | 
+                    - <span>@random.Next(0, 20)</span>
+                </p>
+                <p>
+                    <span>Comment #@i</span>
+                </p>
+            </div>
+        }
+        </noscript>
+    }
+
+    <button data-comment-button>See more comments</button>
+    <div data-comment-container></div>
+</div>
+
+<script>
+    (function ($) {
+        $(function () {
+            var template = $($('#comment-template').html());
+            var commentsContainer = $('[data-comment-container]');
+            var commentsShownSoFar = 0;
+
+            var showComments = function () {
+                for (var i = 0; i < 10; i++) {
+                    var newComment = template.clone(true);
+                    newComment.find('[data-comment-name]').text('Name #' + commentsShownSoFar);
+                    newComment.find('[data-comment-date]').text('Date #' + commentsShownSoFar);
+                    newComment.find('[data-comment-positive-rating]').text(commentsShownSoFar);
+                    newComment.find('[data-comment-negative-rating]').text('<h1>HEADING</h1>');
+                    newComment.find('[data-comment-text]').text('<script>alert(1)<\/script> #' + commentsShownSoFar);
+
+                    commentsContainer.append(newComment);
+
+                    commentsShownSoFar++;
+                }
+            };
+
+            $('[data-comment-button]').click(showComments);
+
+            // If user executes js, noscript tag is removed from the markup
+            $('[data-comment-noscript]').remove();
+
+            // Initially load 10 comments
+            showComments();
+        });
+    }(jQuery));
+</script>
+
+<script type="text/ng-template" id="comment-template">
+<div>
+    <p>
+        <span data-comment-name></span> | 
+        <span data-comment-date></span> |
+        + <span data-comment-positive-rating></span> | 
+        - <span data-comment-negative-rating></span>
+    </p>
+    <p>
+        <span data-comment-text></span>
+    </p>
+</div>
+</script>
