@@ -1,1 +1,52 @@
-﻿<h1>Comments widget.</h1>
+﻿@using Telerik.Sitefinity.Frontend.Mvc.Helpers;
+@using Telerik.Sitefinity.Modules.Pages;
+
+@Html.Script(ScriptRef.JQuery, "top", false)
+
+<input type="hidden" data-sf-role="comments-page-size" value="@(5)" />
+
+<div class="@("CssClassHere")">
+    <p>
+        <span data-sf-role="comments-count"></span> 
+        <span> comments</span>
+        <button data-sf-role="comments-form">Leave a comments</button>
+        <button data-sf-role="comments-sort-new">Newest on top</button>
+        <button data-sf-role="comments-sort-old">Oldest on top</button>
+    </p>
+
+    <p data-sf-role="comments-new-holder">
+        <textarea data-sf-role="comments-new-text" placeholder="Leave a comment"></textarea> <br />
+        <input placeholder="Your name" data-sf-role="comments-new-name" /> <br />
+        <input placeholder="Email (optional)" data-sf-role="comments-new-email" /> <br />
+        <input placeholder="Web site (optional)" data-sf-role="comments-new-website" /> <br />
+        <br />
+        
+        <label>
+            <input type="checkbox" data-sf-role="comments-new-subscribe" />
+            <span>Subscribe me to new comments via email</span>
+        </label>
+
+        <br />
+        <button data-sf-role="comments-new-submit">Submit</button>
+        <br />
+        <a href="#">Comments feed</a>
+    </p>
+    
+    <div data-sf-role="comments-holder"></div>
+    <button data-sf-role="comments-load-more">Load more comments</button>
+</div>
+
+<script type="text/html-template" data-sf-role="single-comment-template">
+<div>
+    <p>
+        <a href="#"><span data-sf-role="comment-name"></span></a> | 
+        <span data-sf-role="comment-date"></span>
+    </p>
+    <p>
+        <span data-sf-role="comment-text"></span>
+    </p>
+</div>
+<br />
+</script>
+
+@Html.Script(Url.WidgetContent("Mvc/Scripts/Comments/comments.js"), "bottom", false)
