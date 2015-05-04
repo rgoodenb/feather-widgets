@@ -86,7 +86,7 @@ namespace Feather.Widgets.TestUI.Framework.Framework.Wrappers.Backend
         /// </summary>
         /// <param name="widgetName">The widget name</param>
         /// <param name="dropZoneIndex">The drop zone index</param>
-        public void EditWidget(string widgetName, int dropZoneIndex = 0, bool isMediaWidgetEdited = false)
+        public void EditWidget(string widgetName, int dropZoneIndex = 0)
         {
             ActiveBrowser.RefreshDomTree();
             var widgetHeader = ActiveBrowser
@@ -101,14 +101,7 @@ namespace Feather.Widgets.TestUI.Framework.Framework.Wrappers.Backend
             editLink.Click();
             ActiveBrowser.WaitUntilReady();
             ActiveBrowser.WaitForAsyncOperations();
-            ActiveBrowser.RefreshDomTree();
-
-            if (!isMediaWidgetEdited)
-            {
-            HtmlFindExpression expression = new HtmlFindExpression("class=modal-title", "InnerText=" + widgetName);
-            ActiveBrowser.WaitForElement(expression, TimeOut, false);
-            Manager.Current.Wait.For(this.WaitForSaveButton, Manager.Current.Settings.ClientReadyTimeout);
-        }
+            ActiveBrowser.WaitForAsyncJQueryRequests();
         }
 
         /// <summary>
