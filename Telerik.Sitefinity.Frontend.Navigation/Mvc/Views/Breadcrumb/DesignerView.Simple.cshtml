@@ -1,5 +1,7 @@
 @using Telerik.Sitefinity.Frontend.Mvc.Helpers
 
+@Html.QueryBuilderScriptReferences()
+
 <h4>@Html.Resource("BreadcrumbIncludeOptions")</h4>
 <div class="form-group">
     <div class="radio">
@@ -42,10 +44,33 @@
         <br />
 
         <label for="groupPage">
-            <input id="groupPage" type="checkbox" ng-model="properties.ShowGroupPages.PropertyValue"
-                   ng-true-value="'True'" ng-false-value="'False'" ng-checked="properties.ShowGroupPages.PropertyValue === 'True'" />
+            <input id="groupPage" 
+                   type="checkbox" 
+                   ng-model="properties.ShowGroupPages.PropertyValue"
+                   ng-true-value="'True'" 
+                   ng-false-value="'False'"
+                   ng-checked="properties.ShowGroupPages.PropertyValue === 'True'" />
             @Html.Resource("BreadcrumbShowGroupPages")
         </label>
+
+        <br />
+
+        <div class="radio">
+            <label for="filterPages" class="full-width">
+                <input id="filterPages" type="checkbox"
+                       ng-model="properties.ShowClassificationFilters.PropertyValue"
+                       ng-true-value="'True'"
+                       ng-false-value="'False'"
+                       ng-checked="properties.ShowClassificationFilters.PropertyValue === 'True'" />
+
+                @Html.Resource("Classifications") (@Html.Resource("ClassificationsTagCategory"))
+
+                <sf-filter-selector sf-query-data="additionalFilters.value"
+                                    ng-show="properties.ShowClassificationFilters.PropertyValue == 'True'"
+                                    sf-taxonomy-fields="@CustomFieldsHelpers.GetTaxonomyFields(typeof(Telerik.Sitefinity.Pages.Model.PageNode))"
+                                    class="sf-filter-selector"></sf-filter-selector>
+            </label>
+        </div>
     </div>
 </div>
 

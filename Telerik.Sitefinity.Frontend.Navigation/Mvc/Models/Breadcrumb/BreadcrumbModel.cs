@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using ServiceStack.Text;
 using Telerik.Sitefinity.Services;
 using Telerik.Sitefinity.Web;
-using Telerik.Sitefinity.Web.UI.NavigationControls;
+using Telerik.Sitefinity.Web.Model;
 
 namespace Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.Breadcrumb
 {
@@ -88,6 +90,20 @@ namespace Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.Breadcrumb
         /// </summary>
         /// <value>The allow virtual nodes.</value>
         public bool AllowVirtualNodes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the serialized additional filters.
+        /// </summary>
+        /// <value>
+        /// The serialized additional filters.
+        /// </value>
+        public string SerializedAdditionalFilters { get; set; }
+
+        /// <summary>
+        /// Gets or sets the show classification filters.
+        /// </summary>
+        /// <value>The show classification filters.</value>
+        public bool ShowClassificationFilters { get; set; }
         #endregion
 
         /// <summary>
@@ -101,11 +117,42 @@ namespace Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.Breadcrumb
 
             result.Item2.AddRange(this.GetVirtualNodes(extender));
 
+            bool isPageRendered = result.Item1;
+            if (isPageRendered)
+            {
+                this.FilterByClassifications(result.Item2);
+            }
+
             return new BreadcrumbViewModel(result.Item2)
             {
                 ShowCurrentPageInTheEnd = this.ShowCurrentPageInTheEnd,
                 IsTemplateRendered = !result.Item1
             };
+        }
+
+        private void FilterByClassifications(List<SiteMapNode> source)
+        {
+            QueryData additionalFilters;
+            if (this.ShowClassificationFilters && !string.IsNullOrWhiteSpace(this.SerializedAdditionalFilters))
+            {
+                additionalFilters = JsonSerializer.DeserializeFromString<QueryData>(this.SerializedAdditionalFilters);
+
+                var queryGroupes = additionalFilters.QueryItems.Where(q => !q.IsGroup).ToList();
+
+                var copyItems = new List<SiteMapNode>(source);
+                foreach (SiteMapNode item in copyItems)
+                {
+                    foreach (QueryItem queryItem in queryGroupes)
+                    {
+                        var guids = TypeDescriptor.GetProperties(item)[queryItem.Condition.FieldName].GetValue(item) as IList<Guid>;
+                        if (guids != null && !guids.Contains(new Guid(queryItem.Value)))
+                        {
+                            source.Remove(item);
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -158,6 +205,7 @@ namespace Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.Breadcrumb
                         string.Compare(nodeKey, rootNodeKey, StringComparison.OrdinalIgnoreCase) != 0)
                 {
                     var node = (PageSiteNode)this.SiteMapProvider.FindSiteMapNodeFromKey(nodeKey);
+
                     if (node != homePageNode)
                     {
                         if (this.ShowGroupPages)

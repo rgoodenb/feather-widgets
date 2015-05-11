@@ -61,6 +61,20 @@ namespace Telerik.Sitefinity.Frontend.Navigation.Mvc.Models.Breadcrumb
         bool AllowVirtualNodes { get; set; }
 
         /// <summary>
+        /// Gets or sets the serialized additional filters.
+        /// </summary>
+        /// <value>
+        /// The serialized additional filters.
+        /// </value>
+        string SerializedAdditionalFilters { get; set; }
+
+        /// <summary>
+        /// Gets or sets the show classification filters.
+        /// </summary>
+        /// <value>The show classification filters.</value>
+        bool ShowClassificationFilters { get; set; }
+
+        /// <summary>
         /// Creates the view model.
         /// </summary>
         /// <param name="extender">The extender.</param>

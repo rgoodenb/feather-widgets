@@ -179,5 +179,35 @@ namespace Telerik.Sitefinity.Frontend.Navigation.Mvc.StringResources
                 return this["BreadcrumbOnTemplateMessage"];
             }
         }
+
+        /// <summary>
+        /// Classifications
+        /// </summary>
+        [ResourceEntry("Classifications",
+            Value = "Classifications",
+            Description = "Classifications",
+            LastModified = "2012/02/21")]
+        public string Classifications
+        {
+            get
+            {
+                return this["Classifications"];
+            }
+        }
+
+        /// <summary>
+        /// ClassificationsTagCategory
+        /// </summary>
+        [ResourceEntry("ClassificationsTagCategory",
+            Value = "e.g. Categories, Tags",
+            Description = "Phrase: e.g. Categories, Tags",
+            LastModified = "2012/02/21")]
+        public string ClassificationsTagCategory
+        {
+            get
+            {
+                return this["ClassificationsTagCategory"];
+            }
+        }
     }
 }
