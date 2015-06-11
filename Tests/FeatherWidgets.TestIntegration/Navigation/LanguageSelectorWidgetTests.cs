@@ -251,7 +251,7 @@ namespace FeatherWidgets.TestIntegration.Navigation
 
         [Test]
         [Multilingual]
-        [Category(TestCategories.Navigation)]
+        [Category(TestCategories.LanguageSelector)]
         [Author(FeatherTeams.Team7)]
         [Description("Verifies language selector with redirect option")]
         public void LanguageSelectorWidget_RedirectToHomePageOfTheMissingTranslations()
