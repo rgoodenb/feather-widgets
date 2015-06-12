@@ -52,7 +52,7 @@ namespace FeatherWidgets.TestIntegration.Navigation
 
         [Test]
         [Multilingual]
-        [Category(TestCategories.Navigation)]
+        [Category(TestCategories.LanguageSelector)]
         [Author(FeatherTeams.Team7)]
         [Description("Verifies language selector current language included")]
         public void LanguageSelectorWidget_CurrentLanguageIncluded()
@@ -79,6 +79,14 @@ namespace FeatherWidgets.TestIntegration.Navigation
             string url = UrlPath.ResolveAbsoluteUrl("~/" + PageName + currentPage.Value.Name);
             var pageContent = PageInvoker.ExecuteWebRequest(url);
             Assert.IsNotNull(pageContent);
+            System.IO.File.WriteAllText(@"C:\TestHtml.txt", pageContent);
+            var cultures = AppSettings.CurrentSettings.DefinedFrontendLanguages;
+            string[] cultureNames = new string[10];
+            for (int i = 0; i < cultures.Length; i++)
+            {
+                cultureNames[i] = cultures[i].Name;
+                System.IO.File.WriteAllLines(@"C:\TestCultures.txt", cultureNames);
+            }
 
             var expectedLinks = new Dictionary<string, string>()
             {
@@ -251,7 +259,7 @@ namespace FeatherWidgets.TestIntegration.Navigation
 
         [Test]
         [Multilingual]
-        [Category(TestCategories.LanguageSelector)]
+        [Category(TestCategories.Navigation)]
         [Author(FeatherTeams.Team7)]
         [Description("Verifies language selector with redirect option")]
         public void LanguageSelectorWidget_RedirectToHomePageOfTheMissingTranslations()
@@ -276,15 +284,7 @@ namespace FeatherWidgets.TestIntegration.Navigation
 
             string url = UrlPath.ResolveAbsoluteUrl("~/" + PageName + currentPage.Value.Name);
             var pageContent = PageInvoker.ExecuteWebRequest(url);
-            Assert.IsNotNull(pageContent);
-            System.IO.File.WriteAllText(@"C:\TestHtml.txt", pageContent);
-            var cultures  = AppSettings.CurrentSettings.DefinedFrontendLanguages;
-            string[] cultureNames = new string[10];
-            for (int i = 0; i < cultures.Length; i++)
-            {
-                cultureNames[i] = cultures[i].Name;
-                System.IO.File.WriteAllLines(@"C:\TestCultures.txt", cultureNames);                
-            }
+            Assert.IsNotNull(pageContent);       
 
             var expectedLinks = new Dictionary<string, string>()
             {
