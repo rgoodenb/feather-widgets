@@ -277,6 +277,7 @@ namespace FeatherWidgets.TestIntegration.Navigation
             string url = UrlPath.ResolveAbsoluteUrl("~/" + PageName + currentPage.Value.Name);
             var pageContent = PageInvoker.ExecuteWebRequest(url);
             Assert.IsNotNull(pageContent);
+            System.IO.File.WriteAllText(@"C:\TestHtml.txt", pageContent);
 
             var expectedLinks = new Dictionary<string, string>()
             {
@@ -291,9 +292,6 @@ namespace FeatherWidgets.TestIntegration.Navigation
             };
 
             var notExpectedLinks = new Dictionary<string, string>();
-
-            string responseContent = PageInvoker.ExecuteWebRequest(url);
-            System.IO.File.WriteAllText(@"C:\TestHtml.txt", responseContent);
             this.AssertLanguageLinks(pageContent, expectedLinks, notExpectedLinks);
         }
 
