@@ -278,6 +278,13 @@ namespace FeatherWidgets.TestIntegration.Navigation
             var pageContent = PageInvoker.ExecuteWebRequest(url);
             Assert.IsNotNull(pageContent);
             System.IO.File.WriteAllText(@"C:\TestHtml.txt", pageContent);
+            var cultures  = AppSettings.CurrentSettings.DefinedFrontendLanguages;
+            string[] cultureNames = new string[10];
+            for (int i = 0; i < cultures.Length; i++)
+            {
+                cultureNames[i] = cultures[i].Name;
+                System.IO.File.WriteAllLines(@"C:\TestCultures.txt", cultureNames);                
+            }
 
             var expectedLinks = new Dictionary<string, string>()
             {
