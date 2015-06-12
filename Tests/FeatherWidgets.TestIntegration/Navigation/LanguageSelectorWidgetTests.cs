@@ -292,6 +292,8 @@ namespace FeatherWidgets.TestIntegration.Navigation
 
             var notExpectedLinks = new Dictionary<string, string>();
 
+            string responseContent = PageInvoker.ExecuteWebRequest(url);
+            System.IO.File.WriteAllText(@"C:\TestHtml.txt", responseContent);
             this.AssertLanguageLinks(pageContent, expectedLinks, notExpectedLinks);
         }
 
